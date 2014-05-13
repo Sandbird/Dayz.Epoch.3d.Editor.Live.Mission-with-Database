@@ -1,0 +1,132 @@
+/*%FSM<COMPILE "C:\bis\fsmeditor\scriptedFSM.cfg, nav_helper">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"init",0,250,-300.000000,150.000000,-200.000000,200.000000,0.000000,"init"};
+item1[] = {"crate_a_wp",2,4346,-150.000000,325.000000,-50.000000,375.000000,0.000000,"crate a wp"};
+item2[] = {"delete_wp",2,250,-450.000000,325.000000,-350.000000,375.000000,0.000000,"delete wp"};
+item3[] = {"too_far",4,218,-300.000000,250.000000,-200.000000,300.000000,0.000000,"too far"};
+item4[] = {"close_enough",4,218,-300.000000,400.000000,-200.000000,450.000000,0.000000,"close enough"};
+item5[] = {"checkpoint_chang",4,218,-300.000000,325.000000,-200.000000,375.000000,10.000000,"checkpoint" \n "changed"};
+link0[] = {0,3};
+link1[] = {1,4};
+link2[] = {1,5};
+link3[] = {2,3};
+link4[] = {3,1};
+link5[] = {4,2};
+link6[] = {5,2};
+globals[] = {25.000000,1,0,0,0,640,480,3,103,6316128,1,-457.760712,-24.522888,884.112488,-27.321785,424,892,1};
+window[] = {2,-1,-1,-1,-1,980,1302,2541,29,3,442};
+*//*%FSM</HEAD>*/
+class FSM
+{
+  fsmName = "nav_helper";
+  class States
+  {
+    /*%FSM<STATE "init">*/
+    class init
+    {
+      name = "init";
+      itemno = 0;
+      init = /*%FSM<STATEINIT""">*/"_tolerance = _this select 0;" \n
+       "" \n
+       "if (isNil ""BIS_Objective"") then {" \n
+       "	BIS_Objective = player;" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "too_far">*/
+        class too_far
+        {
+          itemno = 3;
+          priority = 0.000000;
+          to="crate_a_wp";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(player distance BIS_Objective) > _tolerance"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "crate_a_wp">*/
+    class crate_a_wp
+    {
+      name = "crate_a_wp";
+      itemno = 1;
+      init = /*%FSM<STATEINIT""">*/"//[""Adding waypoint"",player distance BIS_Objective] call BIS_debugLog;" \n
+       "" \n
+       "//save current checkpoint" \n
+       "_currentCheckpoint = BIS_Objective;" \n
+       "" \n
+       "//create wp to checkpoint" \n
+       "_wp = (group player) addWaypoint [getPosATL(BIS_Objective), 0];" \n
+       "_wp setWaypointType ""HOLD"";" \n
+       "_wp setWaypointDescription localize ""STR_EP1_MOVE"";"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "checkpoint_chang">*/
+        class checkpoint_chang
+        {
+          itemno = 5;
+          priority = 10.000000;
+          to="delete_wp";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"_currentCheckpoint != BIS_Objective"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+        /*%FSM<LINK "close_enough">*/
+        class close_enough
+        {
+          itemno = 4;
+          priority = 0.000000;
+          to="delete_wp";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(player distance BIS_Objective) < (_tolerance/2)"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+    /*%FSM<STATE "delete_wp">*/
+    class delete_wp
+    {
+      name = "delete_wp";
+      itemno = 2;
+      init = /*%FSM<STATEINIT""">*/"//[""Deleting waypoint"",player distance BIS_Objective] call BIS_debugLog;" \n
+       "" \n
+       "private[""_group""];" \n
+       "" \n
+       "_group = group player;" \n
+       "" \n
+       "//delete waypoint" \n
+       "while {count(waypoints _group) > 1} do {" \n
+       "	deleteWaypoint [_group, 1];	" \n
+       "};"/*%FSM</STATEINIT""">*/;
+      precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+      class Links
+      {
+        /*%FSM<LINK "too_far">*/
+        class too_far
+        {
+          itemno = 3;
+          priority = 0.000000;
+          to="crate_a_wp";
+          precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(player distance BIS_Objective) > _tolerance"/*%FSM</CONDITION""">*/;
+          action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+        };
+        /*%FSM</LINK>*/
+      };
+    };
+    /*%FSM</STATE>*/
+  };
+  initState="init";
+  finalStates[] =
+  {
+  };
+};
+/*%FSM</COMPILE>*/

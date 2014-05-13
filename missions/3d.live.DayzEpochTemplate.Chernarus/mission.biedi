@@ -1,0 +1,129 @@
+class _prefix_0
+{
+	objectType="prefix";
+	class Arguments
+	{
+		ADDON[]=
+		{
+			"map_eu",
+			"csj_gyroac",
+			"pook_h13",
+			"glt_m300t",
+			"mbg_buildings_3"
+		};
+	};
+};
+class _center_0
+{
+	objectType="center";
+	class Arguments
+	{
+		SIDE="west";
+	};
+};
+class _group_0
+{
+	objectType="group";
+	class Arguments
+	{
+		CENTER="_center_0";
+	};
+};
+class _unit_1
+{
+	objectType="unit";
+	class Arguments
+	{
+		POSITION="[4836.269, 9969.0166]";
+		GROUP="_group_0";
+		TYPE="Camo1_DZ";
+		AZIMUT="47.685612";
+		NAME="Sandbird";
+		SKILL="0.60000002";
+		PLAYER="true";
+		PLAYABLE="true";
+		LEADER="true";
+	};
+};
+class _vehicle_1
+{
+	objectType="vehicle";
+	class Arguments
+	{
+		POSITION="[4962.5352, 10014.729, -0.028254064]";
+		TYPE="SUV_Camo_DZE3";
+		AZIMUT="-122.54756";
+		LOCK="UNLOCKED";
+		PARENT="";
+	};
+};
+class _unit_2
+{
+	objectType="unit";
+	class Arguments
+	{
+		POSITION="[4968.1646, 10013.114, -6.1035156e-005]";
+		GROUP="_group_0";
+		TYPE="BAF_Soldier_AA_W";
+		AZIMUT="-138.015";
+		NAME="Bot1";
+		INIT="botInitScript = [this] execVM ""scripts\BotInit.sqf"";";
+		RANK="CORPORAL";
+		SKILL="0.60000002";
+	};
+};
+class _center_1
+{
+	objectType="center";
+	class Arguments
+	{
+		SIDE="civ";
+	};
+};
+class _group_2
+{
+	objectType="group";
+	class Arguments
+	{
+		CENTER="_center_1";
+	};
+};
+class _center_2
+{
+	objectType="center";
+	class Arguments
+	{
+		SIDE="east";
+	};
+};
+class _group_3
+{
+	objectType="group";
+	class Arguments
+	{
+		CENTER="_center_2";
+	};
+};
+class _unit_7
+{
+	objectType="unit";
+	class Arguments
+	{
+		POSITION="[4967.3462, 10014.542]";
+		GROUP="_group_3";
+		TYPE="Ins_Villager4";
+		AZIMUT="-128.43231";
+		HEALTH="0.89999998";
+		AMMO="0.89999998";
+		INIT="this setVariable [""CharacterID"", ""3"", true]; this setVariable [""playerUID"", ""333333"", true]; this setVariable [""friendlies"", [""111111""], true];";
+		SKILL="0.60000002";
+		LEADER="true";
+	};
+};
+class _postfix_0
+{
+	objectType="postfix";
+	class Arguments
+	{
+	};
+};
