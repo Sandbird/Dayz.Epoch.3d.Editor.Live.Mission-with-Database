@@ -1,6 +1,5 @@
 Dayz.Epoch.3d.Editor.Live.Mission with Database interaction
-
-For fast debugging of scripts, without running a server. All done in the 3d editor (Alt+E), now with Database interactions.
+=================
 
 [![ScreenShot](http://oi58.tinypic.com/2s0fde8.jpg)](http://youtu.be/e4DKLVoBQgA)
 
