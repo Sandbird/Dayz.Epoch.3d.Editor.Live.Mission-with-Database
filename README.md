@@ -111,6 +111,18 @@ For example i had to include:
 ~~~~
 BIS_fnc_invAdd = 				compile preprocessFileLineNumbers "dayz_code\system\functions\inventory\fn_invAdd.sqf";	
 ~~~~ 
+The same goes for publicvariable and publicvariableServer. If want to use addpublicvariableeventhandler you can do it with call/spawn commands. Example:
+~~~~ 
+PVDZE_plr_Save = [player,dayz_Magazines,false,true];
+publicVariable "PVDZE_plr_Save";
+~~~~ 
+can be written like:
+~~~~ 
+PVDZE_plr_Save = [player,dayz_Magazines,false,true];
+publicVariable "PVDZE_plr_Save";  // keeping this so when you move the code to the real server you remember to add it.
+[player,dayz_Magazines,false,true] spawn server_playerSync;  // what to call is usually inside publicEH.sqf.
+~~~~ 
+
 If your code has BIS_fnc functions in it then check the folder ***dayz_code\system\functions*** for the function and include it in the compiles.sqf.
 I am sure there is a way to parse the folder and add a BIS_ infront of all the files, like epoch does it...but i didnt want to waste time and ran into problems,so manually adding the files is fine by me.
 
