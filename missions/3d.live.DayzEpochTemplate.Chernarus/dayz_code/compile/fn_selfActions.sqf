@@ -278,7 +278,7 @@ if (!isNull cursorTarget and !_inVehicle and !_isPZombie and (player distance cu
 
 	if(_player_deleteBuild) then {
 		if (s_player_deleteBuild < 0) then {
-			s_player_deleteBuild = player addAction [format[localize "str_actions_delete",_text], "\z\addons\dayz_code\actions\remove.sqf",_cursorTarget, 1, true, true, "", ""];
+			s_player_deleteBuild = player addAction [format[localize "str_actions_delete",_text], "dayz_code\actions\remove.sqf",_cursorTarget, 1, true, true, "", ""];
 		};
 	} else {
 		player removeAction s_player_deleteBuild;
@@ -665,7 +665,7 @@ if (!isNull cursorTarget and !_inVehicle and !_isPZombie and (player distance cu
 		if (s_player_upgrade_build < 0) then {
 			// s_player_lastTarget = _cursorTarget;
 			s_player_lastTarget set [0,_cursorTarget];
-			s_player_upgrade_build = player addAction [format[localize "STR_EPOCH_ACTIONS_UPGRADE",_text], "\z\addons\dayz_code\actions\player_upgrade.sqf",_cursorTarget, -1, false, true, "",""];
+			s_player_upgrade_build = player addAction [format[localize "STR_EPOCH_ACTIONS_UPGRADE",_text], "dayz_code\actions\player_upgrade.sqf",_cursorTarget, -1, false, true, "",""];
 		};
 	} else {
 		player removeAction s_player_upgrade_build;
@@ -683,7 +683,7 @@ if (!isNull cursorTarget and !_inVehicle and !_isPZombie and (player distance cu
 
 		if (s_player_downgrade_build < 0) then {
 			s_player_lastTarget set [1,_cursorTarget];
-			s_player_downgrade_build = player addAction [format[localize "STR_EPOCH_ACTIONS_REMLOCK",_text], "\z\addons\dayz_code\actions\player_buildingDowngrade.sqf",_cursorTarget, -2, false, true, "",""];
+			s_player_downgrade_build = player addAction [format[localize "STR_EPOCH_ACTIONS_REMLOCK",_text], "dayz_code\actions\player_buildingDowngrade.sqf",_cursorTarget, -2, false, true, "",""];
 		};
 	} else {
 		player removeAction s_player_downgrade_build;
@@ -701,7 +701,7 @@ if (!isNull cursorTarget and !_inVehicle and !_isPZombie and (player distance cu
 
 		if (s_player_maint_build < 0) then {
 			s_player_lastTarget set [2,_cursorTarget];
-			s_player_maint_build = player addAction [format[localize "STR_EPOCH_ACTIONS_MAINTAIN",_text], "\z\addons\dayz_code\actions\player_buildingMaint.sqf",_cursorTarget, -2, false, true, "",""];
+			s_player_maint_build = player addAction [format[localize "STR_EPOCH_ACTIONS_MAINTAIN",_text], "dayz_code\actions\player_buildingMaint.sqf",_cursorTarget, -2, false, true, "",""];
 		};
 	} else {
 		player removeAction s_player_maint_build;
