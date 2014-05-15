@@ -47,7 +47,7 @@ if (!isDedicated) then {
 	player_unlockVault =	compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\player_unlockVault.sqf";
 	//player_unlockbunker = compile preprocessFileLineNumbers "dayz_code\compile\player_unlockBunker.sqf";
 	
-	//player_removeObject =	compile preprocessFileLineNumbers "dayz_code\actions\remove.sqf"; 			//\z\addons\
+	player_removeObject =	compile preprocessFileLineNumbers "dayz_code\actions\remove.sqf"; 			//\z\addons\
 	player_removeNet =			compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\object_removeNet.sqf";
 	player_removeTankTrap = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\object_removeTankTrap.sqf";
 	player_unlockDoor =			compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\player_unlockDoor.sqf";
@@ -107,7 +107,7 @@ if (!isDedicated) then {
 	//player_chopWood =			compile preprocessFileLineNumbers "\z\addons\dayz_code\actions\player_chopWood.sqf";
 	//player_harvestPlant =	compile preprocessFileLineNumbers "dayz_code\actions\player_harvestPlant.sqf";
 	player_goFishing =			compile preprocessFileLineNumbers "\z\addons\dayz_code\actions\player_goFishing.sqf";
-	//player_build =				compile preprocessFileLineNumbers "dayz_code\actions\player_build.sqf";
+	player_build =				compile preprocessFileLineNumbers "dayz_code\actions\player_build.sqf";
 	//player_buildControls	= compile preprocessFileLineNumbers "custom\snap_build\player_buildControls.sqf";
 	//snap_object				= compile preprocessFileLineNumbers "custom\snap_build\snap_object.sqf";
 	player_wearClothes =	compile preprocessFileLineNumbers "\z\addons\dayz_code\actions\player_wearClothes.sqf";

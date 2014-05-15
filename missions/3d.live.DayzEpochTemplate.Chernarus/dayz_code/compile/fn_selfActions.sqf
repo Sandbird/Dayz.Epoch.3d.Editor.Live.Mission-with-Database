@@ -549,7 +549,7 @@ if (!isNull cursorTarget and !_inVehicle and !_isPZombie and (player distance cu
 		} else {
 			if(("ItemJerrycan" in _magazinesPlayer) and ("ItemMatchbox_DZE" in weapons player)) then {
 				if (s_player_packtent < 0) then {
-					s_player_packtent = player addAction [localize "STR_EPOCH_ACTIONS_DESTROYTENT", "\z\addons\dayz_code\actions\remove.sqf",_cursorTarget, 1, true, true, "", ""];
+					s_player_packtent = player addAction [localize "STR_EPOCH_ACTIONS_DESTROYTENT", "dayz_code\actions\remove.sqf",_cursorTarget, 1, true, true, "", ""];
 				};
 			};
 		};
