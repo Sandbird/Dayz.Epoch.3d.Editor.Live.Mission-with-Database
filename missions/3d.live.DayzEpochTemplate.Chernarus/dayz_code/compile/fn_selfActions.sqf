@@ -975,6 +975,8 @@ if (!isNull cursorTarget and !_inVehicle and !_isPZombie and (player distance cu
 	s_player_fuelauto = -1;
 	player removeAction s_player_fuelauto2;
 	s_player_fuelauto2 = -1;
+	player removeAction s_player_packOBJ;
+	s_player_packOBJ = -1;
 };
 
 
