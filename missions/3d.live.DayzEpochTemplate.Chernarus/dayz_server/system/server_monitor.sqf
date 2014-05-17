@@ -1,4 +1,4 @@
-private ["_nul","_result","_pos","_wsDone","_dir","_block","_isOK","_countr","_objWpnTypes","_objWpnQty","_dam","_selection","_totalvehicles","_object","_idKey","_type","_ownerID","_worldspace","_intentory","_hitPoints","_fuel","_damage","_key","_key2","_data2","_vehLimit","_hiveResponse","_objectCount","_codeCount","_data","_status","_val","_traderid","_retrader","_traderData","_id","_lockable","_debugMarkerPosition","_vehicle_0","_bQty","_vQty","_BuildingQueue","_objectQueue","_superkey","_shutdown","_res","_hiveLoaded","_response"];
+private ["_nul","_result","_pos","_wsDone","_dir","_block","_isOK","_countr","_objWpnTypes","_objWpnQty","_dam","_selection","_totalvehicles","_object","_idKey","_type","_ownerID","_worldspace","_intentory","_hitPoints","_fuel","_damage","_key","_key2","_data2","_vehLimit","_hiveResponse","_objectCount","_codeCount","_data","_status","_val","_traderid","_retrader","_traderData","_id","_lockable","_debugMarkerPosition","_vehicle_0","_bQty","_vQty","_BuildingQueue","_objectQueue","_superkey","_shutdown","_res","_hiveLoaded","_response","_vUID"];
 
 dayz_versionNo = 		getText(configFile >> "CfgMods" >> "DayZ" >> "version");
 dayz_hiveVersionNo = 	getNumber(configFile >> "CfgMods" >> "DayZ" >> "hiveVersion");
@@ -74,7 +74,7 @@ if (!DefaultTruePreMadeFalse) then {
 		_bQty = 0;
 		_vQty = 0;
 		for "_i" from 0 to (_objectCount - 1) do {
-			_key = format["SELECT `ObjectID`, `Classname`, `CharacterID`, `Worldspace`, `Inventory`, `Hitpoints`, `Fuel`, `Damage` FROM object_data WHERE `Instance`='%1' AND `Classname` IS NOT NULL LIMIT %2,1",dayZ_instance, _i];
+			_key = format["SELECT `ObjectID`, `ObjectUID`, `Classname`, `CharacterID`, `Worldspace`, `Inventory`, `Hitpoints`, `Fuel`, `Damage` FROM object_data WHERE `Instance`='%1' AND `Classname` IS NOT NULL LIMIT %2,1",dayZ_instance, _i];
 			_hiveResponse = _key call server_hiveReadWriteLarge;
 			_response = _hiveResponse select 0 select 0;
 			sleep .001;
@@ -95,14 +95,15 @@ if (!DefaultTruePreMadeFalse) then {
 	{
 		//diag_log format["%1", _x];
 		_idKey = 		_x select 0;
-		_type =			_x select 1;
-		_ownerID = 		_x select 2;
+		_vUID = 		_x select 1;
+		_type =			_x select 2;
+		_ownerID = 		_x select 3;
 
-		_worldspace = 	call compile (_x select 3);
-		_intentory =	call compile (_x select 4);
-		_hitPoints =	call compile (_x select 5);
-		_fuel =			call compile (_x select 6);
-		_damage = 		call compile (_x select 7);
+		_worldspace = 	call compile (_x select 4);
+		_intentory =	call compile (_x select 5);
+		_hitPoints =	call compile (_x select 6);
+		_fuel =			call compile (_x select 7);
+		_damage = 		call compile (_x select 8);
 		
 		_dir = 0;
 		_pos = [0,0,0];
@@ -131,6 +132,7 @@ if (!DefaultTruePreMadeFalse) then {
 			_object = createVehicle [_type, _pos, [], 0, "CAN_COLLIDE"];
 			_object setVariable ["lastUpdate",time];
 			_object setVariable ["ObjectID", _idKey, true];
+			_object setVariable ["ObjectUID", _vUID, true];
 
 			_lockable = 0;
 			if(isNumber (configFile >> "CfgVehicles" >> _type >> "lockable")) then {
