@@ -141,7 +141,7 @@ if (_finished) then {
 					//["PVDZE_veh_Publish",[_veh,[_dir,_location],_part_out,true,0]] call callRpcProcedure;
 					PVDZE_veh_Publish2 = [_veh,[_dir,_location],_part_out,true,0,_activatingPlayer];
 					publicVariableServer  "PVDZE_veh_Publish2";
-					[PVDZE_veh_Publish2] spawn server_publishVeh2;
+					[_veh,[_dir,_location],_part_out,true,0,_activatingPlayer] spawn server_publishVeh2;
 				};
 
 			} else {

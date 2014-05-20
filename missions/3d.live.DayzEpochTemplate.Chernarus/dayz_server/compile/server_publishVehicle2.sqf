@@ -54,21 +54,15 @@ _key call server_hiveWrite;
    _done = false;
 	_retry = 0;
 	// TODO: Needs major overhaul for 1.1
-	while {_retry < 10} do {
-		
 		sleep 1;
 		// GET DB ID
 		//_key = format["CHILD:388:%1:",_uid];
-		_key 		= format["SELECT ObjectID FROM object_data WHERE ObjectUID = '%1'",_uid];
-		_result = _key call server_hiveReadWrite;
-		_outcome 		= _result select 0 select 0;
-		diag_log ("HIVE: WRITE: "+ str(_key));
-		_result = _key call server_hiveReadWrite;
-		_outcome = _result select 0;
-		_oid = _outcome select 0;
-		_done = true;
-	};
-
+	_key 		= format["SELECT ObjectID FROM object_data WHERE ObjectUID = '%1'",_uid];
+	_result = _key call server_hiveReadWrite;
+	_outcome 		= _result select 0 select 0;
+	_oid = _outcome select 0;
+	_done = true;
+	
 	// Remove marker
 	deleteVehicle _object;
 
@@ -85,6 +79,7 @@ _key call server_hiveWrite;
 	if(!_donotusekey) then {
 		// Lock vehicle
 		_object setvehiclelock "locked";
+		_object setVariable ["R3F_LOG_disabled",true,true]; // Sandbird (prevent towing of locked vehicles)
 	};
 
 	clearWeaponCargoGlobal  _object;
@@ -96,6 +91,8 @@ _key call server_hiveWrite;
 	_object setVariable ["lastUpdate",time];
 	
 	_object setVariable ["CharacterID", _characterID, true];
+	
+	_object setVariable ["ObjectUID", _uid, true];
 
 	if(DZE_TRADER_SPAWNMODE) then {
 		_object attachTo [_object_para, [0,0,-1.6]];

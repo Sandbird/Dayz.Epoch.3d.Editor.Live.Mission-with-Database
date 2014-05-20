@@ -141,7 +141,7 @@ if (_finished) then {
 					//["PVDZE_veh_Publish",[_veh,[_dir,_location],_part_out,false,_keySelected]] call callRpcProcedure;
 					PVDZE_veh_Publish2 = [_veh,[_dir,_location],_part_out,true,dayz_characterID,_activatingPlayer];
 					publicVariableServer "PVDZE_veh_Publish2";
-					[PVDZE_veh_Publish2] spawn server_publishVeh2;
+					[_veh,[_dir,_location],_part_out,true,dayz_characterID,_activatingPlayer] spawn server_publishVeh2;
 					
 					
 					cutText [format[(localize "STR_EPOCH_PLAYER_180"),_qty_in,_textPartIn,_textPartOut], "PLAIN DOWN"];

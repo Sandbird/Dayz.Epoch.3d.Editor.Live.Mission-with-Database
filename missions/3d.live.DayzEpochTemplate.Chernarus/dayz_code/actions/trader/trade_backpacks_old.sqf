@@ -88,7 +88,8 @@ if (_qty >= _qty_in) then {
 			if (isNil "_bag") then { _bag = "Unknown Backpack" };
 			if (isNil "inTraderCity") then { inTraderCity = "Unknown Trader City" };
 			PVDZE_obj_Trade = [_activatingPlayer,_traderID,_bos,_bag,inTraderCity];
-			publicVariableServer  "PVDZE_obj_Trade";
+			//publicVariableServer  "PVDZE_obj_Trade";
+			[_activatingPlayer,_traderID,_bos,_bag,inTraderCity] spawn server_tradeObj;
 	
 			//diag_log format["DEBUG Starting to wait for answer: %1", PVDZE_obj_Trade];
 

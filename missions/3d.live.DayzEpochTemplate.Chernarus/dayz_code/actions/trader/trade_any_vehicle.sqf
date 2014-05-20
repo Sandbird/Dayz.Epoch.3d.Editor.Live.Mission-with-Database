@@ -159,7 +159,7 @@ if (_finished) then {
 						//diag_log format["+++++++++++++++++++++++++++%1",PVDZE_veh_Publish2];
 						PVDZE_veh_Publish2 = [_veh,[_dir,_location],_part_out,false,_keySelected,_activatingPlayer];
 						publicVariableServer "PVDZE_veh_Publish2";
-						[PVDZE_veh_Publish2] spawn server_publishVeh2;
+						[_veh,[_dir,_location],_part_out,false,_keySelected,_activatingPlayer] spawn server_publishVeh2;
 						
 
 						cutText [format[(localize "STR_EPOCH_ACTIONS_11"),_qty_in,_textPartIn,_textPartOut], "PLAIN DOWN"];
