@@ -524,7 +524,7 @@ dayz_objectUID3 = {
 dayz_recordLogin = {
 	private["_key"];
 	//_key = format["CHILD:103:%1:%2:%3:",_this select 0,_this select 1,_this select 2]; //playerID, charterId, action
-	_key = format["INSERT INTO `Player_LOGIN` (`CharacterID`, `Datestamp`, `Action`) VALUES ('%1', '%2', CURRENT_TIMESTAMP, '%3')",_this select 0,_this select 1,_this select 2];
+	_key = format["INSERT INTO `Player_LOGIN` (`PlayerUID`,`CharacterID`, `Datestamp`, `Action`) VALUES ('%1', '%2', CURRENT_TIMESTAMP, '%3')",_this select 0,_this select 1,_this select 2];
 	_key call server_hiveWrite;
 };
 
