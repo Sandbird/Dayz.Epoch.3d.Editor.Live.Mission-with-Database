@@ -197,10 +197,10 @@ dayz_myPosition = getPosATL player;
 
 //["PVDZE_plr_LoginRecord",[_playerUID,_charID,0]] call callRpcProcedure;
 
-PVDZE_plr_LoginRecord = [dayz_playerUID,dayz_characterID,0];
+PVDZE_plr_LoginRecord = [_playerUID,_charID,0];
 publicVariableServer "PVDZE_plr_LoginRecord";
 if (!DefaultTruePreMadeFalse) then {
-	PVDZE_plr_LoginRecord spawn dayz_recordLogin;
+[_playerUID,_charID,0] spawn dayz_recordLogin;
 };
 endLoadingScreen;
 
